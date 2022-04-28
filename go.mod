@@ -1,4 +1,4 @@
-module github.com/trestx-technology/trestx_common-library
+module github.com/Trestx-technology/trestx-common-go-lib
 
 go 1.17
 
