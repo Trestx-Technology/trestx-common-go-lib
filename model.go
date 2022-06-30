@@ -60,6 +60,9 @@ func InsertOne(document interface{}, collectionName string) (*mongo.InsertOneRes
 func UpdateOne(filter, update bson.M, collectionName string) (*mongo.UpdateResult, error) {
 	return database.Collection(collectionName).UpdateOne(context.Background(), filter, update)
 }
+func UpdateMany(filter, update bson.M, collectionName string) (*mongo.UpdateResult, error) {
+	return database.Collection(collectionName).UpdateMany(context.Background(), filter, update)
+}
 func DeleteOne(filter bson.M, collectionName string) (*mongo.DeleteResult, error) {
 	return database.Collection(collectionName).DeleteOne(context.Background(), filter)
 }
