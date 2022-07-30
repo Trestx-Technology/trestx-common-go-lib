@@ -57,10 +57,10 @@ func Aggregate(pipeline bson.A, collectionName string) (*mongo.Cursor, error) {
 func InsertOne(document interface{}, collectionName string) (*mongo.InsertOneResult, error) {
 	return database.Collection(collectionName).InsertOne(context.Background(), document)
 }
-func UpdateOne(filter, update bson.M, collectionName string) (*mongo.UpdateResult, error) {
+func UpdateOne(filter, update interface{}, collectionName string) (*mongo.UpdateResult, error) {
 	return database.Collection(collectionName).UpdateOne(context.Background(), filter, update)
 }
-func UpdateMany(filter, update bson.M, collectionName string) (*mongo.UpdateResult, error) {
+func UpdateMany(filter, update interface{}, collectionName string) (*mongo.UpdateResult, error) {
 	return database.Collection(collectionName).UpdateMany(context.Background(), filter, update)
 }
 func DeleteOne(filter bson.M, collectionName string) (*mongo.DeleteResult, error) {
