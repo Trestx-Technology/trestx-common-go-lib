@@ -63,6 +63,9 @@ func UpdateOne(filter, update interface{}, collectionName string) (*mongo.Update
 func UpdateMany(filter, update interface{}, collectionName string) (*mongo.UpdateResult, error) {
 	return database.Collection(collectionName).UpdateMany(context.Background(), filter, update)
 }
+func ReplaceOne(filter, update interface{}, collectionName string) (*mongo.UpdateResult, error) {
+	return database.Collection(collectionName).ReplaceOne(context.Background(), bson.M{}, bson.M{})
+}
 func DeleteOne(filter bson.M, collectionName string) (*mongo.DeleteResult, error) {
 	return database.Collection(collectionName).DeleteOne(context.Background(), filter)
 }
