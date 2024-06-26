@@ -2,14 +2,15 @@ package trestx_common
 
 import (
 	"context"
-	firebase "firebase.google.com/go"
-	"firebase.google.com/go/auth"
+	"log"
+	"os"
+
+	firebase "firebase.google.com/go/v4"
+	"firebase.google.com/go/v4/auth"
 	"github.com/spf13/viper"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
-	"log"
-	"os"
 )
 
 var database *mongo.Database
@@ -24,6 +25,9 @@ func init() {
 	password := viper.GetString("mongodb.password")
 	uri := db + "://" + userName + ":" + password + "@" + dbHost + "/" + dbName + "?retryWrites=true&w=majority"
 	clientOptions := options.Client().ApplyURI(uri)
+	clientOptions.SetMaxPoolSize(10)
+	clientOptions.SetMinPoolSize(5)
+	clientOptions.SetMaxConnIdleTime(1000)
 	client, err := mongo.Connect(context.Background(), clientOptions)
 	if err != nil {
 		log.Println(err)
