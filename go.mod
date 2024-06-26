@@ -1,6 +1,6 @@
 module github.com/Trestx-technology/trestx-common-go-lib
 
-go 1.17
+go 1.21
 
 require (
 	cloud.google.com/go/storage v1.22.0
