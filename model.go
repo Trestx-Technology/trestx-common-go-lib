@@ -62,7 +62,8 @@ func InsertOne(document interface{}, collectionName string) (*mongo.InsertOneRes
 	return database.Collection(collectionName).InsertOne(context.Background(), document)
 }
 func UpdateOne(filter, update interface{}, collectionName string) (*mongo.UpdateResult, error) {
-	return database.Collection(collectionName).UpdateOne(context.Background(), filter, update)
+	opts := options.Update().SetUpsert(true)
+	return database.Collection(collectionName).UpdateOne(context.Background(), filter, update, opts)
 }
 func UpdateMany(filter, update interface{}, collectionName string) (*mongo.UpdateResult, error) {
 	return database.Collection(collectionName).UpdateMany(context.Background(), filter, update)
